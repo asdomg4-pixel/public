@@ -1,0 +1,58 @@
+html, body {
+  margin: 0;
+  padding: 0;
+}
+canvas {
+  display: block;
+}
+#start:hover{
+  background-color: #DDDDDD;
+}
+#start:active{
+background-color: #C5C3C3;
+}
+body{
+  background-color: #000000;
+  color: #FFFFFF;
+  font-family: 'Courier New', Courier, monospace;
+  text-align: center;
+}
+
+#start{
+margin:2px;
+  background-color: #FFFFFF;
+  font-size:15px;
+  border-radius:10px;
+}
+.loader {
+  position:absolute;
+  top:calc(40vh - 20px);
+  left:calc(50vw - 20px);
+  border: 10px solid #000000; 
+  border-top: 10px solid #f3f3f3; 
+  border-bottom:10px solid #f3f3f3; 
+  border-radius: 80%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+}
+#load{
+width:200px;
+height:20px;
+border:solid 2px black;
+position:absolute;
+left:calc(50vw - 100px);
+top:calc(50vh + 10px);
+}
+@keyframes spin {
+  0% { transform: rotate(0deg); 
+   }
+  100% { transform: rotate(360deg); 
+   }
+}
+#ascii{
+letter-spacing:1.5ch;
+  font-size:6px;
+  color: #FFFFFF;
+  background-color: #000000;
+}

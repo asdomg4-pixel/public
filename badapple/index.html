@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <script src="https://cdn.jsdelivr.net/npm/p5@2.0.0/lib/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.8.0/addons/p5.sound.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <audio style="display:none" src="badApple.m4a"></audio>
+    <div style="text-align:center">
+    <h1 style="margin-bottom:3px; font-size:15px;">Generatore di Bad Apple  </h1> 
+      <p style="margin-top:auto; font-size:10px;">metti due caratteri o parole nelle caselle sottostanti, e premi play per trasformarli in Bad Apple!<br></p>
+      <label for="one">Color 1:</label>
+  <input style="margin:2px;" onchange="loadFrames()" type="text" id="one"><br><br>
+  <label for="two">Color 2:</label>
+  <input onchange="loadFrames()" type="text" id="two"><br>
+      <p id="warning" style="color:red;display:none;font-size:16px">attenzione: Le caselle sopra non hanno la stessa larghezza.<br> Il video generato non sembrerà accurato . </p>
+      <button id="start" type="button" onclick="go()">PLAY</button>
+       <div id="p5_loading" class="loadingclass">
+       <div class="loader" id="load1"></div>  
+      </div>
+      <div class="loader" id="load2"></div>  
+      <p id="ascii" style="font-family: monospace;
+white-space: nowrap;text-align:center"></p>
+    </div>
+    <script src="sketch.js"></script>
+  
+
+</body></html>
