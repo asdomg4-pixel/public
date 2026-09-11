@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Commander Builder</title>
+
+  <link rel="stylesheet" href="Style.css">
+</head>
+
+<body>
+
+  <!-- PULSANTI LINGUA -->
+  <div id="languageButtons" style="position: fixed; top: 10px; right: 10px; z-index: 1000;">
+    <button id="langIt" style="font-size: 20px; margin-right: 5px;">🇮🇹</button>
+    <button id="langEn" style="font-size: 20px;">🇬🇧</button>
+  </div>
+
+  <!-- COLORI COMMANDER -->
+  <div id="commanderColorsBar" class="controls" style="display:none;">
+    <h1 id="titlecolori">Colori Commander</h1><br>
+
+    <button class="color-btn" id="goHomeBtn">⬅ Torna indietro</button>
+    <button class="color-btn W" data-color="W">⚪ W</button>
+    <button class="color-btn U" data-color="U">🔵 U</button>
+    <button class="color-btn B" data-color="B">⚫ B</button>
+    <button class="color-btn R" data-color="R">🔴 R</button>
+    <button class="color-btn G" data-color="G">🟢 G</button>
+    <button class="color-btn" id="copyListBtn">📋 Copia lista</button>
+  </div>
+
+  <!-- LINEA ANIMATA -->
+  <div id="modeLine"></div>
+
+  <!-- SCHERMATA INIZIALE -->
+  <div id="startScreen" style="text-align:center; margin-top:80px;">
+    <h1>Commander Mana Builder</h1>
+    <p>Scegli cosa vuoi costruire</p>
+    <div class="Start-grid">
+      <div class="family-btn start-btn" data-mode="rocks">
+        Mana Rocks
+      </div>
+
+      <div class="family-btn start-btn" data-mode="dorks">
+        Mana Dorks
+      </div>
+
+      <div class="family-btn start-btn" data-mode="lands">
+        Terre
+      </div>
+
+      <div class="family-btn start-btn" id="calculatorBtn" data-mode="calculator">
+        Simulatore
+      </div>
+      <div class="family-btn start-btn" id="badAppleBtn"
+        style="display:flex; justify-content:center; align-items:center;" title="Bad Apple">
+        Bad Apple
+      </div>
+    </div>
+  </div>
+
+  <!-- ROCKS SCREEN -->
+  <div id="rocksScreen" style="display:none;">
+    <h1>Mana Rocks – Commander Builder</h1>
+
+    <!-- FAMIGLIE -->
+    <div class="controls">
+      <strong>Famiglie di Mana Rocks</strong>
+
+      <div class="family-grid" id="familyGrid">
+        <!-- renderizzato via JS -->
+      </div>
+    </div>
+
+    <!-- LISTA -->
+    <div id="listBox">
+      <h3>Lista Mana Rocks</h3>
+      <button class="color-btn" id="copyBtn">📋 Copia lista</button>
+      <div id="decklistContainer" class="card-list"></div>
+    </div>
+  </div>
+
+  <!-- DORKS SCREEN -->
+  <div id="dorksScreen" style="display:none; text-align:center;">
+    <div class="controls">
+      <strong>Famiglie di Mana Dorks</strong>
+      <div class="family-grid" id="dorksFamilyGrid"></div>
+    </div>
+
+    <div id="listBox">
+      <h3>Lista Mana Dorks</h3>
+      <button class="color-btn" id="copyDorksBtn">📋 Copia lista</button>
+      <div id="dorksDecklist" class="card-list"></div>
+    </div>
+
+  </div>
+
+  <!-- LANDS SCREEN -->
+  <div id="landsScreen" style="display:none;">
+    <h1>Lands – Commander Builder</h1>
+
+    <!-- FAMIGLIE -->
+    <div class="controls">
+      <strong>Famiglie di Lands</strong>
+
+      <div class="family-grid" id="landsFamilyGrid">
+        <!-- renderizzato via JS -->
+      </div>
+    </div>
+
+    <!-- LISTA -->
+    <div id="listBox">
+      <h3>Lista Lands</h3>
+      <button class="color-btn" id="copyLandsBtn">📋 Copia lista</button>
+      <div id="landsDecklist" class="card-list"></div>
+    </div>
+  </div>
+
+  <!-- CALCULATOR SCREEN -->
+  <div id="calculatorScreen" style="display:none;">
+
+    <div class="calculator-container">
+      <div class="calculator-inputs">
+        <div class="input-row" style="display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 20px;">
+          <div class="input-group" style="flex: 1;">
+            <label for="deckSize">Dimensione Mazzo (carte totali):</label>
+            <input type="number" id="deckSize" min="1" max="999" value="99" placeholder="es. 100">
+          </div>
+
+          <!-- NUOVO: Numero di Mulligan -->
+          <div class="input-group" style="flex: 1;">
+            <label for="maxMulligans">Numero di Mulligan:</label>
+            <input type="number" id="maxMulligans" min="0" max="5" value="1" placeholder="es. 1">
+          </div>
+        </div>
+
+        <div class="multi-family-grid">
+          <!-- COLONNA 1 -->
+          <div class="family-column">
+            <div class="input-group">
+              <label for="familyName1">Nome gruppo:</label>
+              <input type="text" class="family-name-input" id="familyName1" value="Lands" placeholder="es. Lands">
+            </div>
+            <div class="input-group">
+              <label for="familyCount1">Carte nel Mazzo:</label>
+              <input type="number" id="familyCount1" min="1" max="999" value="39" placeholder="es. 39">
+            </div>
+            <div class="input-group">
+              <label for="familyMinSuccess1">Minimo di carte da trovare:</label>
+              <input type="number" id="familyMinSuccess1" min="1" max="999" value="2" placeholder="es. 2">
+            </div>
+            <div class="input-group">
+              <label for="familyMinMulligan1">Almeno x altrimenti mulligan:</label>
+              <input type="number" id="familyMinMulligan1" min="0" max="999" value="3" placeholder="es. 3">
+            </div>
+            <div class="input-group">
+              <label for="familyMaxTurn1">Entro turno:</label>
+              <input type="number" id="familyMaxTurn1" min="0" max="20" value="4" placeholder="es. 4 (0=mano iniziale)">
+            </div>
+          </div>
+
+          <!-- COLONNA 2 -->
+          <div class="family-column">
+            <div class="input-group">
+              <label for="familyName2">Nome gruppo:</label>
+              <input type="text" class="family-name-input" id="familyName2" value="Ramp" placeholder="es. Ramp">
+            </div>
+            <div class="input-group">
+              <label for="familyCount2">Carte nel Mazzo:</label>
+              <input type="number" id="familyCount2" min="1" max="999" value="12" placeholder="es. 12">
+            </div>
+            <div class="input-group">
+              <label for="familyMinSuccess2">Minimo di carte da trovare:</label>
+              <input type="number" id="familyMinSuccess2" min="1" max="999" value="1" placeholder="es. 1">
+            </div>
+            <div class="input-group">
+              <label for="familyMinMulligan2">Almeno x altrimenti mulligan:</label>
+              <input type="number" id="familyMinMulligan2" min="0" max="999" value="1" placeholder="es. 1">
+            </div>
+            <div class="input-group">
+              <label for="familyMaxTurn2">Entro turno:</label>
+              <input type="number" id="familyMaxTurn2" min="0" max="20" value="2" placeholder="es. 2 (0=mano iniziale)">
+            </div>
+          </div>
+
+          <!-- COLONNA 3 -->
+          <div class="family-column">
+            <div class="input-group">
+              <label for="familyName3">Nome gruppo:</label>
+              <input type="text" class="family-name-input" id="familyName3" placeholder="es. Creatura">
+            </div>
+            <div class="input-group">
+              <label for="familyCount3">Carte nel Mazzo:</label>
+              <input type="number" id="familyCount3" min="0" max="999" placeholder="es. 20">
+            </div>
+            <div class="input-group">
+              <label for="familyMinSuccess3">Minimo di carte da trovare:</label>
+              <input type="number" id="familyMinSuccess3" min="0" max="999" placeholder="es. 1">
+            </div>
+            <div class="input-group">
+              <label for="familyMinMulligan3">Almeno x altrimenti mulligan:</label>
+              <input type="number" id="familyMinMulligan3" min="0" max="999" placeholder="es. 0">
+            </div>
+            <div class="input-group">
+              <label for="familyMaxTurn3">Entro turno:</label>
+              <input type="number" id="familyMaxTurn3" min="0" max="20" placeholder="es. 0 (0=mano iniziale)">
+            </div>
+          </div>
+        </div>
+
+        <!-- Info automatica sul numero di carte pescate 
+      <div class="info-box" id="cardsDrawnInfo" style="padding: 12px; background: #1a1a2e; border-radius: 6px; margin: 15px 0;">
+        <strong>Calcolo automatico carte pescate:</strong>
+        <p style="margin: 8px 0 0 0; font-size: 14px;">
+          Mano iniziale: <span id="initialCards">7</span> carte<br>
+          Carte per turno: <span id="cardsPerTurn">1</span><br>
+          Turno massimo: <span id="maxTurn">0</span><br>
+          <strong>Totale carte pescate: <span id="totalCardsDrawn">7</span></strong>
+        </p>
+      </div>-->
+
+        <div style="display: flex; gap: 10px; margin-bottom: 20px;">
+          <button class="calc-btn" id="calculateBtn">Calcola</button>
+          <label style="margin-left: 10px;">
+            <input type="checkbox" id="showSimulationsCheckbox"> <span id="showSimulationsLabel">Mostra
+              simulazioni</span>
+          </label>
+          <button class="calc-btn" id="bestCompositionBtn"
+            style="background: linear-gradient(135deg, #8a2be2, #4b0082);">
+            Miglior composizione
+          </button>
+
+          <!-- AGGIUNGI QUESTI NUOVI PULSANTI
+        <button class="calc-btn" id="saveSimulationsBtn" style="background: linear-gradient(135deg, #5ccc7a, #4aa3ff);">💾 Salva 100 Simulazioni</button>
+        <button class="calc-btn" id="loadSimulationsBtn" style="background: linear-gradient(135deg, #ff6b4a, #f8f6d8);">📂 Carica Simulazioni</button>
+         -->
+        </div>
+      </div>
+
+      <div class="calculator-results" id="calculatorResults" style="display:none;">
+        <div id="mulliganInfo"
+          style="display:none; margin-bottom: 20px; padding: 12px; background: #1a3a1a; border-left: 3px solid #5ccc7a; border-radius: 4px;">
+          <strong style="color: #5ccc7a;">🔄 Mulligan Applicato</strong>
+          <p style="margin: 8px 0 0 0; font-size: 13px;" id="mulliganDetails"></p>
+        </div>
+
+        <h2>Risultati</h2>
+        <div class="results-grid">
+          <div class="result-card">
+            <div class="result-label">Probabilità di Successo</div>
+            <div class="result-value" id="probSuccess">0%</div>
+          </div>
+          <!--<div class="result-card">
+          <div class="result-label">Tasso Mulligan</div>
+          <div class="result-value" id="mulliganRate">0%</div>
+        </div>
+      </div>-->
+          <div id="detailedResults"
+            style="margin-top: 20px; padding: 12px; background: #1a1a2e; border-radius: 8px; font-size: 14px;"></div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <!-- SCRIPT -->
+    <script type="module" src="Script.js"></script>
+
+</body>
+
+</html>

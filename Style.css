@@ -1,0 +1,884 @@
+body {
+  background:#0f0f0f;
+  color:#eee;
+  font-family: Arial, sans-serif;
+  padding:20px;
+  box-sizing:border-box;
+  max-width:100%;
+}
+
+.Start-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    justify-items: center;
+    align-items: center;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .Start-grid {
+    grid-template-columns: 1fr;
+    max-width: 400px;
+  }
+}
+
+h1 { 
+  text-align:center;
+  font-size: 2rem;
+  margin: 0 0 20px 0;
+}
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+  
+  body {
+    padding:12px;
+  }
+}
+
+/* CONTROLS */
+.controls {
+  text-align:center;
+  margin-bottom:15px;
+}
+
+/* COLOR BUTTONS */
+.color-btn {
+  margin:4px;
+  padding:8px 12px;
+  background:#222;
+  border:1px solid #444;
+  border-radius:6px;
+  cursor:pointer;
+  transition:0.2s;
+  color:#eee;
+  font-size:25px;
+}
+
+@media (max-width: 420px) {
+  .color-btn {
+    padding:6px 10px;
+    margin:3px;
+    font-size:12px;
+  }
+  .start-btn{
+    font-size: 10vw;
+    width: 40vw;
+    height: 40vw;
+  }
+}
+
+.color-btn.active {
+  font-weight:bold;
+  box-shadow:0 0 10px currentColor;
+}
+
+.color-btn.W.active { color:#f8f6d8; border-color:#f8f6d8; }
+.color-btn.U.active { color:#4aa3ff; border-color:#4aa3ff; }
+.color-btn.B.active { color:#b0b0b0; border-color:#b0b0b0; }
+.color-btn.R.active { color:#ff6b4a; border-color:#ff6b4a; }
+.color-btn.G.active { color:#5ccc7a; border-color:#5ccc7a; }
+
+/* FAMILY BUTTONS */
+.family-grid {
+  display:flex;
+  flex-wrap:wrap;
+  gap:15px;
+  justify-content:center;
+}
+
+.family-btn {
+  position: relative;
+  background:#1a1a1a;
+  border:1px solid #444;
+  border-radius:10px;
+  cursor:pointer;
+  padding:10px;
+  text-align:center;
+  transition:0.2s;
+  transform-style: preserve-3d;
+  flex: 1 1 23vh;
+  min-width:180px;
+  max-width:280px;
+}
+
+@media (max-width: 768px) {
+  .family-btn {
+    flex: 1 1 160px;
+    min-width:150px;
+    max-width:220px;
+  }
+  .start-btn{
+    font-size: 10vw;
+    width: 40vw;
+    height: 40vw;
+  }
+}
+
+@media (max-width: 480px) {
+  .family-btn {
+    flex: 1 1 140px;
+    min-width:130px;
+    max-width:180px;
+    padding:8px;
+  }
+  .start-btn{
+    font-size: 10vw;
+    width: 40vw;
+    height: 40vw;
+  }
+}
+
+.family-btn.active {
+  border-color:#4caf50;
+  box-shadow:0 0 14px #4caf50;
+}
+
+.family-btn img.main {
+  width:100%;
+  height:260px;
+  object-fit:cover;
+  border-radius:6px;
+}
+
+@media (max-width: 768px) {
+  .family-btn img.main {
+    height:200px;
+  }
+}
+
+@media (max-width: 480px) {
+  .family-btn img.main {
+    height:160px;
+  }
+}
+
+.family-title {
+  margin-top:8px;
+  font-weight:bold;
+}
+
+/* TOOLTIP */
+.family-btn .tooltip {
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 6px 10px;
+  background: rgba(0,0,0,0.8);
+  border: 1px solid #444;
+  border-radius: 6px;
+  font-size: 12px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.family-btn:hover .tooltip {
+  opacity: 1;
+}
+
+/* PREVIEW WRAPPER */
+.preview {
+  position:absolute;
+  width:120px;
+  height:170px;
+  bottom:10px;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity 0.25s ease;
+  perspective:800px;
+}
+
+.preview img {
+  width:100%;
+  height:100%;
+  border-radius:6px;
+  object-fit:cover;
+  transform:translateY(60px) scale(0.8) rotateX(20deg);
+  transition:transform 0.35s ease;
+  box-shadow:0 10px 25px rgba(0,0,0,0.6);
+}
+
+/* POSIZIONI */
+.preview.p1 { left:10px; }
+.preview.p2 { left:50%; transform:translateX(-50%); }
+.preview.p3 { right:10px; }
+
+/* HOVER */
+.family-btn:hover .preview {
+  opacity:1;
+}
+
+.family-btn:hover .preview.p1 img {
+  transform:translate(-10px,-20px) scale(1) rotateY(-12deg) rotateX(12deg);
+}
+.family-btn:hover .preview.p2 img {
+  transform:translateY(-30px) scale(1) rotateX(15deg);
+}
+.family-btn:hover .preview.p3 img {
+  transform:translate(10px,-20px) scale(1) rotateY(12deg) rotateX(12deg);
+}
+
+/* LIST */
+#listBox {
+  margin-top:30px;
+  background:#141414;
+  padding:15px;
+  border-radius:8px;
+  width:100%;
+  box-sizing:border-box;
+}
+
+textarea {
+  width:100%;
+  height:180px;
+  background:#0f0f0f;
+  color:#eee;
+  border:1px solid #444;
+  border-radius:6px;
+  padding:10px;
+  box-sizing:border-box;
+  font-family: Arial, sans-serif;
+  font-size:14px;
+  resize:vertical;
+}
+
+@media (max-width: 768px) {
+  textarea {
+    height:140px;
+    font-size:13px;
+  }
+}
+
+@media (max-width: 480px) {
+  textarea {
+    height:120px;
+    font-size:12px;
+  }
+}
+
+/* START BUTTONS */
+.start-btn {
+  font-size: 4vw;
+  width: 40vw;
+  height: 10vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  border-top-left-radius: 151px;
+  border-bottom-right-radius: 150px;
+}
+
+@media only screen and (max-width: 600px) {
+  .start-btn {
+    font-size: 10vw;
+    width: 40vw;
+    height: 40vw;
+  }
+}
+
+/* LINEA ANIMATA */
+#modeLine {
+  width:0;
+  height:4px;
+  background:linear-gradient(90deg,white,#4aa3ff,black,red,#4caf50);
+  margin:15px auto 0;
+  margin-bottom:15px;
+  border-radius:4px;
+  transition: width 0.5s ease;
+}
+
+#modeLine.active {
+  width:80%;
+}
+
+/* CALCULATOR STYLES */
+.calculator-container {
+  max-width: 800px;
+  margin: 30px auto;
+  padding: 20px;
+  background: #141414;
+  border-radius: 8px;
+  border: 1px solid #444;
+}
+
+.calculator-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.input-group label {
+  font-weight: bold;
+  padding: 3px;
+  margin-top: 27px;
+  font-size: 18px;
+  color: #eee;
+}
+.input-group input[type="text"],
+.input-group input[type="number"] {
+  width: 100%;
+  box-sizing: border-box;
+}
+.input-group input {
+  padding: 12px 1px;
+  text-indent: 10px;
+  background: #0f0f0f;
+  color: #eee;
+  border: 1px solid #444;
+  border-radius: 6px;
+  font-size: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.input-group input:focus {
+  outline: none;
+  border-color: #4aa3ff;
+  box-shadow: 0 0 8px rgba(74, 163, 255, 0.3);
+}
+
+.calc-btn {
+  padding: 12px 20px;
+  width: 110%;
+  background: linear-gradient(135deg, #4aa3ff, #5ccc7a);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 1vw;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+  white-space: nowrap;
+}
+
+#saveSimulationsBtn {
+  background: linear-gradient(135deg, #5ccc7a, #4aa3ff);
+}
+
+#loadSimulationsBtn {
+  background: linear-gradient(135deg, #ff6b4a, #f8f6d8);
+  color: #333;
+}
+
+.calc-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(74, 163, 255, 0.5);
+}
+
+.calc-btn:active {
+  transform: scale(0.98);
+}
+
+.calculator-results {
+  margin-top: 25px;
+}
+
+.calculator-results h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 1.3rem;
+}
+
+.results-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.result-card {
+  background: #1a1a1a;
+  border: 1px solid #444;
+  border-radius: 8px;
+  padding: 15px;
+  text-align: center;
+  transition: 0.2s;
+}
+
+.result-card:hover {
+  border-color: #4aa3ff;
+  box-shadow: 0 0 10px rgba(74, 163, 255, 0.2);
+}
+
+.result-label {
+  font-size: 2vh;
+  color: #aaa;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+.result-value {
+  font-size: 24px;
+  color: #4aa3ff;
+  font-size: 5vh;
+  font-weight: bold;
+}
+
+/* Modifica la parte del multi-family-grid nel CSS: */
+
+.multi-family-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  padding: 15px;
+  background: #1a1a2e;
+  border-radius: 8px;
+}
+
+@media (max-width: 1024px) {
+  .multi-family-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    padding: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .multi-family-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    padding: 8px;
+  }
+  
+  .family-column {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 8px;
+  }
+  
+  .input-group {
+    width: 100%;
+  }
+  
+  .input-group label {
+    font-size: 12px;
+  }
+  
+  .input-group input {
+    padding: 6px 8px;
+    font-size: 12px;
+  }
+  
+  .family-name-input {
+    width: 100%;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .multi-family-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+    padding: 6px;
+  }
+  
+  .family-column {
+    padding: 6px;
+    gap: 6px;
+  }
+  
+  .input-group label {
+    font-size: 11px;
+  }
+  
+  .input-group input {
+    padding: 5px 6px;
+    font-size: 11px;
+  }
+  
+  .input-group small {
+    font-size: 10px;
+  }
+}
+
+/* Se proprio su mobile molto stretto vuoi mettere in colonna, puoi usare questa media query più stretta: */
+@media (max-width: 360px) {
+  .multi-family-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+}
+
+/* CARD LIST STYLES */
+.card-list {
+  max-width: 600px;
+  margin: 15px auto;
+  padding: 15px;
+  background: #0f0f0f;
+  border: 1px solid #444;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-height: 120px;
+}
+
+.card-item {
+  position: relative;
+  padding: 10px 12px;
+  background: #1a1a1a;
+  border: 1px solid #333;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: 0.2s;
+  color: #eee;
+  font-size: 14px;
+  user-select: none;
+}
+
+.card-item:hover {
+  background: #222;
+  border-color: #4aa3ff;
+  box-shadow: 0 0 8px rgba(74, 163, 255, 0.3);
+}
+
+.card-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 9999;
+  background: #111;
+  border: 2px solid #4aa3ff;
+  border-radius: 8px;
+  padding: 8px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+  display: none;
+}
+
+.card-popup.active {
+  display: block;
+}
+
+.card-popup img {
+  width: 180px;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+/* Su desktop, il popup è più grande */
+@media (min-width: 769px) {
+  .card-popup img {
+    width: 300px;
+    height: 420px;
+  }
+}
+
+/* Info box per il calcolo automatico */
+.info-box {
+  background: #1a1a2e;
+  border: 1px solid #333;
+  border-radius: 8px;
+  padding: 15px;
+  margin: 15px 0;
+}
+
+.info-box strong {
+  color: #4aa3ff;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.info-box p {
+  margin: 10px 0 0 0;
+  line-height: 1.5;
+  color: #ccc;
+}
+
+.info-box span {
+  color: #5ccc7a;
+  font-weight: bold;
+}
+
+/* Stile per le righe di input affiancati */
+.input-row {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.input-row .input-group {
+  flex: 1;
+  min-width: 200px;
+}
+
+/* Responsive per input affiancati */
+@media (max-width: 768px) {
+  .input-row {
+    flex-direction: row;
+    gap: 15px;
+  }
+  
+  .input-row .input-group {
+    width: 100%;
+    min-width: unset;
+  }
+}
+.input-row .input-group label {
+  min-height: 40px; /* Permette 2 righe di testo */
+  display: flex;
+  align-items: flex-end; /* Mantieni il testo in basso */
+  line-height: 1.3;
+  padding-bottom: 2px; /* Spazio dal bordo inferiore */
+}
+/* Stile per il testo piccolo (help text) */
+.input-group small {
+  color: #aaa;
+  font-size: 12px;
+  display: block;
+  margin-top: 4px;
+  line-height: 1.3;
+}
+
+/* Stili per la tabella delle simulazioni */
+#simulationsContainer table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 10px 0;
+}
+
+#simulationsContainer th {
+  background: #222;
+  padding: 8px;
+  border: 1px solid #444;
+  text-align: left;
+  font-weight: bold;
+}
+
+#simulationsContainer td {
+  padding: 8px;
+  border: 1px solid #444;
+  font-size: 12px;
+}
+
+#simulationsContainer tr:nth-child(even) {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+#simulationsContainer tr:hover {
+  background: rgba(74, 163, 255, 0.1);
+}
+
+@media (max-width: 768px) {
+  .calculator-container {
+    padding: 15px;
+    margin: 20px auto;
+  }
+
+  .results-grid {
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    gap: 10px;
+  }
+
+  /*.result-value {
+    font-size: 18px;
+  }*/
+}
+
+@media (max-width: 480px) {
+  .calculator-container {
+    padding: 12px;
+    margin: 15px auto;
+  }
+
+  .input-group input {
+    font-size: 12px;
+    padding: 8px 10px;
+  }
+
+  .calc-btn {
+    font-size: 3.1vw;
+    padding: 10px 15px;
+  }
+
+  .results-grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .result-card {
+    padding: 12px;
+  }
+
+  .result-label {
+    font-size: 11px;
+  }
+
+  /*.result-value {
+    font-size: 16px;
+  }*/
+}
+
+/* Nascondi i pulsanti JSON su mobile */
+@media (max-width: 768px) {
+  #saveSimulationsBtn,
+  #loadSimulationsBtn {
+    display: none !important;
+  }
+}
+
+/* Assicurati che il pulsante Calcola occupi tutto lo spazio su mobile */
+@media (max-width: 768px) {
+  #calculateBtn {
+    width: 100%;
+  }
+}
+
+/* Aggiungi alla fine di Style.css */
+
+/* Stili per la visualizzazione delle simulazioni */
+#simulationsContainerCalculate table td div span {
+  display: inline-block;
+  margin: 0 1px;
+  padding: 1px 3px;
+  border-radius: 2px;
+  transition: all 0.2s;
+}
+
+#simulationsContainerCalculate table td div span:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 3px currentColor;
+}
+
+/* Stili per la tabella delle simulazioni */
+#simulationsContainerCalculate table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+#simulationsContainerCalculate table th {
+  position: sticky;
+  top: 0;
+  background: #222;
+  z-index: 10;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+
+#simulationsContainerCalculate table tr:hover {
+  background: rgba(74, 163, 255, 0.1) !important;
+}
+
+/* Scrollbar personalizzata */
+#simulationsContainerCalculate::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+#simulationsContainerCalculate::-webkit-scrollbar-track {
+  background: #1a1a1a;
+  border-radius: 5px;
+}
+
+#simulationsContainerCalculate::-webkit-scrollbar-thumb {
+  background: #4aa3ff;
+  border-radius: 5px;
+}
+
+#simulationsContainerCalculate::-webkit-scrollbar-thumb:hover {
+  background: #5ccc7a;
+}
+
+/* Responsive per la visualizzazione delle carte */
+@media (max-width: 768px) {
+  #simulationsContainerCalculate {
+    font-size: 11px;
+    max-height: 400px;
+  }
+  
+  #simulationsContainerCalculate table {
+    font-size: 10px;
+  }
+  
+  #simulationsContainerCalculate table td {
+    padding: 4px;
+  }
+  
+  #simulationsContainerCalculate table td div span {
+    margin: 0;
+    padding: 0 2px;
+    font-size: 9px;
+  }
+}
+/* Best Composition Styles */
+.calc-btn#bestCompositionBtn {
+  background: linear-gradient(135deg, #8a2be2, #4b0082) !important;
+  color: white !important;
+  border: 1px solid #9370db !important;
+  font-weight: bold !important;
+  transition: all 0.3s ease !important;
+}
+
+.calc-btn#bestCompositionBtn:hover {
+  background: linear-gradient(135deg, #9b30ff, #551a8b) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 5px 15px rgba(138, 43, 226, 0.4) !important;
+}
+
+.apply-composition {
+  transition: all 0.2s ease;
+}
+
+.apply-composition:hover {
+  background: #9b30ff !important;
+  transform: scale(1.05);
+}
+#calculatorBtn{
+  font-size: 2.6vw
+}
+@media (max-width: 768px) {
+  #bestCompositionResults table,
+  #bestCompositionResults thead,
+  #bestCompositionResults tbody,
+  #bestCompositionResults th,
+  #bestCompositionResults td,
+  #bestCompositionResults tr {
+    display: block;
+  }
+  #calculatorBtn{
+  font-size: 7.8vw;
+  }
+
+  #bestCompositionResults thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+  
+  #bestCompositionResults tr {
+    border: 1px solid #444;
+    margin-bottom: 10px;
+    padding: 10px;
+  }
+  
+  #bestCompositionResults td {
+    border: none;
+    padding: 2px!important;
+    position: relative;
+  }
+  
+  #bestCompositionResults td:before {
+    content: attr(data-label);
+    position: absolute;
+    left: 10px;
+    width: 35%;
+    font-weight: bold;
+  }
+}

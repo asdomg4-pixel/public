@@ -1,0 +1,94 @@
+{
+  "commander": [
+    {"name": "Sphere of the Suns", "colors": []},
+    {"name": "Obsidian Obelisk", "colors": []},
+    {"name": "Planar Atlas", "colors": []},
+    {"name": "Ebony Fly", "colors": []},
+    {"name": "Noble's Purse", "colors": []},
+    {"name": "Fractured Powerstone", "colors": []},
+    {"name": "Solar Transformer", "colors": []},
+    {"name": "Coldsteel Heart", "colors": []},
+    {"name": "Mind Stone", "colors": []},
+    {"name": "Liquimetal Torque", "colors": []},
+    {"name": "Fellwar Stone", "colors": []},
+    {"name": "Herd Heirloom", "colors": ["G"]}
+  ],
+  "signet": [
+    {"name": "Azorius Signet", "colors": ["W","U"]},
+    {"name": "Dimir Signet", "colors": ["U","B"]},
+    {"name": "Rakdos Signet", "colors": ["B","R"]},
+    {"name": "Golgari Signet", "colors": ["B","G"]},
+    {"name": "Selesnya Signet", "colors": ["W","G"]},
+    {"name": "Orzhov Signet", "colors": ["W","B"]},
+    {"name": "Izzet Signet", "colors": ["U","R"]},
+    {"name": "Simic Signet", "colors": ["U","G"]},
+    {"name": "Gruul Signet", "colors": ["R","G"]},
+    {"name": "Boros Signet", "colors": ["W","R"]},
+    {"name": "Arcane Signet", "colors": []}
+  ],
+  "talisman": [
+    {"name": "Talisman of Dominance", "colors": ["U","B"]},
+    {"name": "Talisman of Progress", "colors": ["W","U"]},
+    {"name": "Talisman of Indulgence", "colors": ["B","R"]},
+    {"name": "Talisman of Creativity", "colors": ["U","R"]},
+    {"name": "Talisman of Unity", "colors": ["W","G"]},
+    {"name": "Talisman of Conviction", "colors": ["W","R"]},
+    {"name": "Talisman of Curiosity", "colors": ["U","G"]},
+    {"name": "Talisman of Impulse", "colors": ["R","G"]},
+    {"name": "Talisman of Resilience", "colors": ["B","G"]}
+  ],
+  "medallion": [
+    {"name": "Pearl Medallion", "colors": ["W"]},
+    {"name": "Sapphire Medallion", "colors": ["U"]},
+    {"name": "Jet Medallion", "colors": ["B"]},
+    {"name": "Ruby Medallion", "colors": ["R"]},
+    {"name": "Emerald Medallion", "colors": ["G"]}
+  ],
+  "diamond": [
+    {"name": "Marble Diamond", "colors": ["W"]},
+    {"name": "Sky Diamond", "colors": ["U"]},
+    {"name": "Charcoal Diamond", "colors": ["B"]},
+    {"name": "Fire Diamond", "colors": ["R"]},
+    {"name": "Moss Diamond", "colors": ["G"]}
+  ],
+  "ramos": [
+    {"name": "Tooth of Ramos", "colors": ["W"]},
+    {"name": "Eye of Ramos", "colors": ["U"]},
+    {"name": "Skull of Ramos", "colors": ["B"]},
+    {"name": "Heart of Ramos", "colors": ["R"]},
+    {"name": "Horn of Ramos", "colors": ["G"]}
+  ],
+  "add2": [
+    {"name": "Worn Powerstone", "colors": []},
+    {"name": "Relic of Legends", "colors": []},
+    {"name": "Basalt Monolith", "colors": []},
+    {"name": "Patriar's Seal", "colors": []},
+    {"name": "Glittering Stockpile", "colors": []},
+    {"name": "Coalition Relic", "colors": []},
+    {"name": "Honor-Worn Shaku", "colors": []},
+    {"name": "Component Pouch", "colors": []}
+  ],
+  "fast": [
+    {"name": "Sol Ring", "colors": []},
+    {"name": "Mana Crypt", "colors": []},
+    {"name": "Jeweled Lotus", "colors": []},
+    {"name": "Chrome Mox", "colors": []},
+    {"name": "Mox Diamond", "colors": []}
+  ],
+  "big": [
+    {"name": "Ur-Golem's Eye", "colors": []},
+    {"name": "Ichor Elixir", "colors": []},
+    {"name": "Ring of the Lucii", "colors": []},
+    {"name": "Sisay's Ring", "colors": []},
+    {"name": "Firemind Vessel", "colors": []},
+    {"name": "Stonespeaker Crystal", "colors": []},
+    {"name": "Relic of Sauron", "colors": []},
+    {"name": "Thran Dynamo", "colors": []},
+    {"name": "Hedron Archive", "colors": []},
+    {"name": "arc reactor", "colors": []},
+    {"name": "Lavabrink Floodgates", "colors": []},
+    {"name": "Everflowing Chalice", "colors": []},
+    {"name": "Gilded Lotus", "colors": []}
+
+  ]
+}
